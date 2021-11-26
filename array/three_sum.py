@@ -92,10 +92,68 @@ class Solution:
             else:
                 print (nums[i])
 
+    # 给定一个长度为n的整数数组和一个目标值target，寻找能够使条件nums[i] + nums[j] + nums[k] < target成立的三元组i, j, k个数（0 <= i < j < k < n）。
+    # 示例：
+    # 输入: nums = [-2, 0, 1, 3], target = 2
+    # 输出: 2
+    # 解释: 因为一共有两个三元组满足累加和小于
+    # 2:
+    # [-2, 0, 1]
+    # [-2, 0, 3]
+    # 第二种思路：
+    # 看到 i < j < k， 可以联想到先把nums排好序，
+    # 然后利用一重外循环，一重内部双指针处理有序数组的两数之和问题。
+
+    def minThreeSum(self, nums, target):
+        cnt, l = 0, len(nums)
+        nums.sort()
+        print (nums)
+        for i in range(l-2):
+            midNum = target - nums[i]
+            left = i + 1
+            right = l - 1
+            if nums[left] + nums[right] < midNum:
+                cnt += right - left
+                left += 1
+                print(nums[i], nums[left], nums[right])
+            else:
+                right -= 1
+        return cnt
+
+    # 给定一个包括n个整数的数组nums和一个目标值target。找出nums中的三个整数，使得它们的和与target最接近。返回这三个数的和。假定每组输入只存在唯一答案。
+    #
+    # 例如，给定数组
+    # nums = [-1，2，1，-4], 和
+    # target = 1.
+    #
+    # 与
+    # target
+    # 最接近的三个数的和为
+    # 2.(-1 + 2 + 1 = 2).
+
+    def closeThreeSum(self, nums, target):
+        cnt, l = 0, len(nums)
+        nums.sort()
+        cns = nums[o]+nums[1]+nums[2]
+        for i in range(l-2):
+            left = i + 1
+            right = l - 1
+            tmp = nums[i] + nums[left] + nums[right]
+            while left < right:
+                if abs(tmp - target) < abs(cns-target):
+                    cns = tmp
+                if tmp > target:
+                    right -= 1
+                else:
+                    left += 1
+        return cns
+
 if __name__=="__main__":
     nums = [1,0,-1,0,-2,2]
-    target = 0
+    nums2 = [-2,0,1,3]
+    target = 2
     s = Solution()
     # s.testContinue(nums)
     # print(s.threeSum(nums, target))
-    print(s.fourSum(nums, target))
+    # print(s.fourSum(nums, target))
+    print(s.minThreeSum(nums2, target))

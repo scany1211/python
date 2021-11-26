@@ -82,7 +82,7 @@ class Solution:
 
 
 if __name__ == "__main__":
-    nums = [0,0,1,1,1,2,2,3,3,4,5]
+    nums = [0,0,1,1,2,2,3,3,4,1]
     nums2 = [2, 3, 1, 0, 2, 5, 3]
     s = Solution()
     # s.duplicate(nums)

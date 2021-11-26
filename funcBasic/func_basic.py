@@ -12,11 +12,29 @@ def func2(voltage, state="a stiff", action="voom", type="Blue"):
     print("-- Lovely plumage, the", type)
     print("-- It's", state, "!")
 
+class B(Exception):
+    pass
+class C(B):
+    pass
+class D(C):
+    pass
+
+
+
 
 if __name__ == "__main__":
-    func1("Limburger", "It's very runny, sir.",
-           "It's really very, VERY runny, sir.",
-           shopkeeper="Michael Palin",
-           client="John Cleese",
-           sketch="Cheese Shop Sketch")
-    func2('a million', 'bereft of life', 'jump')
+    # func1("Limburger", "It's very runny, sir.",
+    #        "It's really very, VERY runny, sir.",
+    #        shopkeeper="Michael Palin",
+    #        client="John Cleese",
+    #        sketch="Cheese Shop Sketch")
+    # func2('a million', 'bereft of life', 'jump')
+    for cls in [B,C,D]:
+        try:
+            raise cls()
+        except B:
+            print("B")
+        except C:
+            print("C")
+        except D:
+            print("D")
